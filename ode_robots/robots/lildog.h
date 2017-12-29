@@ -13,16 +13,16 @@
  * forward declarations
  */
 namespace lpzrobots {
-  class HingeJoint;
-  class IRSensor;
-  class Joint;
-  class OneAxisServo;
-  class Primitive;
+  class HingeJoint;//链接机器人到ground
+  class IRSensor;//红外传感器
+  class Joint;//关节
+  class OneAxisServo;//但自由度驱动器
+  class Primitive;//原始运动副
   class RaySensorBank;
-  class SliderJoint;
-  class SpeedSensor;
-  class Spring;
-  class TwoAxisServo;
+  class SliderJoint;//滑动关节
+  class SpeedSensor;//速度传感器
+  class Spring;//弹簧
+  class TwoAxisServo;//双自由度驱动
  }
 
  namespace lpzrobots {
@@ -114,20 +114,20 @@ namespace lpzrobots {
       //shoulder
       double shoulderLength;
       double shoulderRadius;
-      //humerus
+      //humerus肱部
       double humerusLength;
       double humerusRadius;
-      //forearm
+      //forearm前臂
       double forearmLength;
       double forearmRadius;
 	 //-----------REAR LEGS--------
-      //hip
+      //hip髋，臀部
       double hipLength;
       double hipRadius;
-      //femur
+      //femur大腿
       double femurLength;
       double femurRadius;
-      //tibia
+      //tibia小腿
       double tibiaLength;
       double tibiaRadius;
 

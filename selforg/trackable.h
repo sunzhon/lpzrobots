@@ -70,7 +70,6 @@ public:
       @return 3x3 rotation matrix
    */
   virtual matrix::Matrix getOrientation() const =0;
-
 };
 
 #endif

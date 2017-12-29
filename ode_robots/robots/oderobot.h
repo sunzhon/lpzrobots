@@ -134,7 +134,7 @@ namespace lpzrobots {
     /** sets the pose of the vehicle
         @param pose desired 4x4 pose matrix
     */
-    virtual void place(const osg::Matrix& pose) final;
+    virtual void place(const osg::Matrix& pose) final;//防止vu函数被重写，防止基类被继承
 
     /// wrapper to for @see place() that is to be overloaded
     virtual void placeIntern(const osg::Matrix& pose) = 0;
@@ -182,15 +182,18 @@ namespace lpzrobots {
     */
     virtual Position getSpeed() const;
 
+
     /** returns angular velocity vector of the object
         @return vector  (wx,wy,wz)
     */
     virtual Position getAngularSpeed() const;
 
+
     /** returns the orientation of the object
         @return 3x3 rotation matrix
     */
     virtual matrix::Matrix getOrientation() const;
+
     /*********** END TRACKABLE INTERFACE ****************/
 
     /// return the primitive of the robot that is used for tracking and camera following

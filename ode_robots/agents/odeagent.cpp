@@ -51,6 +51,7 @@ namespace lpzrobots {
     }
   }
 
+
   void TraceDrawer::drawTrace(GlobalData& global){
     if (initialized && tracker.isDisplayTrace()){
       Position pos(obj->getPosition());
@@ -135,6 +136,7 @@ namespace lpzrobots {
     }
   }
 
+
   void OdeAgent::beforeStep(GlobalData& global){
     OdeRobot* r = getRobot();
     r->sense(global);
@@ -185,6 +187,7 @@ namespace lpzrobots {
 
   }
 
+
   void OdeAgent::trace(GlobalData& global){
     mainTrace.drawTrace(global);
     FOREACH(TraceDrawerList, segmentTracking, td){
@@ -223,6 +226,7 @@ namespace lpzrobots {
       fprintf(stderr, "TrackablePrimitive:: getOrientation(): not implemented\n");
       return matrix::Matrix(3,3);
     };
+
 
   protected:
     Primitive* p;

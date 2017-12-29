@@ -364,6 +364,7 @@ Position OdeRobot::getPosition() const {
     return Position(0,0,0);
 }
 
+
 Position OdeRobot::getSpeed() const {
   const Primitive* o = getMainPrimitive();
   if(o)
@@ -389,7 +390,6 @@ matrix::Matrix OdeRobot::getOrientation() const {
     return R^0; // identity
   }
 }
-
 
 
   /*********** END TRACKABLE INTERFACE ****************/

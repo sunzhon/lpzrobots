@@ -29,7 +29,7 @@
 
 namespace lpzrobots {
 
-  LilDog::Leg::Leg() {
+  LilDog::Leg::Leg() {//结构体够找函数
     shoulderJoint1 = 0;
     shoulderJoint2 = 0;
     elbowJoint = 0;
@@ -69,7 +69,7 @@ namespace lpzrobots {
     			addParameter("hip1Power", &conf.hip1Power);
     			addParameter("hip2Power", &conf.hip2Power);
     		
- 				addParameter("shouler1Damp", &conf.shoulder1Damping);
+ 			addParameter("shouler1Damp", &conf.shoulder1Damping);
     			addParameter("shouler2Damp", &conf.shoulder2Damping);
     			addParameter("elbowDamp", &conf.elbowDamping);
     			addParameter("hip1Damp", &conf.hip1Damping);
@@ -91,7 +91,7 @@ namespace lpzrobots {
     			addParameter("kneeJointLimitU", &conf.kneeJointLimitU);
     			addParameter("kneeJointLimitD", &conf.kneeJointLimitD);
 
-
+    			//addInspectableDescription
     			nameSensor(S1R0_as, "*SH1R0 angle sensor");
     			nameSensor(S2R0_as, "*SH2R0 angle sensor");
     			nameSensor(ELR0_as, "*ELR0 angle sensor");
@@ -110,7 +110,7 @@ namespace lpzrobots {
  				nameSensor(L0_fs, "*L0 foot contact sensor");
     			nameSensor(L1_fs, "*L1 foot contact sensor"); 
 
-    			// name the motors
+    			// addInspectableDescription
     			nameMotor(S1R0_m, "TR0 motor");
     			nameMotor(S2R0_m, "TR1 motor");
     			nameMotor(ELR0_m, "TR2 motor");
@@ -321,6 +321,8 @@ void LilDog::nameSensor(const int sensorNo, const char* name) {
       if (legContactSensors[LegPos(i)])
         legContactSensors[LegPos(i)]->update();
     }
+    //suntao add this ,to update addparamter to robot
+    setParam("dummy", 0);
 
 #ifdef VERBOSE
     std::cerr << "LilDog::update END\n";
@@ -484,7 +486,7 @@ void LilDog::create(const osg::Matrix& pose) {
 
 
 
-    // if wanted, leg trunk connections are rotated here:
+    // if wanted, leg trunk connections are rotated here:修改褪的配置方式
     legtrunkconnections[R1] = ROTM(conf.rLegRotAngle, 0, 0, 1) * ROTM(conf.rLegTrunkAngleH, 1, 0, 0)
             * ROTM(conf.rLegTrunkAngleV, 0, 1, 0) * legtrunkconnections[R1];
     legtrunkconnections[L1] = ROTM(conf.rLegRotAngle, 0, 0, -1) * ROTM(conf.rLegTrunkAngleH, -1, 0, 0)
@@ -1089,39 +1091,39 @@ void LilDog::destroy() {
     c.fLegRotAngle = 0.0;
     // ------------- Rear legs ------------------
     // => forward/backward
-    c.rLegTrunkAngleV = 0.0;
+    c.rLegTrunkAngleV =0.0;
     // => upward/downward
     c.rLegTrunkAngleH = 0.0;
     // => till
-    c.rLegRotAngle = 0.0;
+    c.rLegRotAngle = 0.0;//M_PI; //顺装-逆转
 
     // be careful changing the following dimension, they may break the
     // simulation!! (they shouldn't but they do)
-    const double shoulderLength_cm = 0.05;
+    const double shoulderLength_cm = 0.05;//肩膀
     c.shoulderLength = shoulderLength_cm  ;
-    c.shoulderRadius = .03 ;
+    c.shoulderRadius = .04 ;
 
-    const double humerusLength_cm = .3575;
+    const double humerusLength_cm = .3575;//胳膊
     c.humerusLength = humerusLength_cm ;
-    c.humerusRadius = .03 ;
+    c.humerusRadius = .04 ;
 
-    const double forearmLength_cm = .6058;
+    const double forearmLength_cm = .6058;//小臂
     c.forearmLength = forearmLength_cm  ;
     c.forearmRadius = .03 ;
 
-    const double hipLength_cm = 0.045;
+    const double hipLength_cm = 0.05;//髋
     c.hipLength = hipLength_cm  ;
-    c.hipRadius = .03 ;
+    c.hipRadius = .04 ;
 
-    const double femurLength_cm = 0.3574;
+    const double femurLength_cm = 0.3575;//大腿
     c.femurLength = femurLength_cm ;
     c.femurRadius = .04 ;
 
-    const double tibiaLength_cm = 0.5858; // 3)
+    const double tibiaLength_cm = 0.6058; // 3)小腿
     c.tibiaLength = tibiaLength_cm ;
-    c.tibiaRadius = 0.02  ;
+    c.tibiaRadius = 0.03  ;
     // this determines the limit of the footspring
-    c.footRange = .02  ;
+    c.footRange = .02  ;//足
     c.footRadius = 0.02 ;
     // -----------------------
     // 2) Joint Limits
@@ -1134,7 +1136,7 @@ void LilDog::destroy() {
     c.shoulderJoint1LimitD = M_PI / 180.0 * 60.0;
 
     //0 deg; forward (-) MAX 
-    c.shoulderJoint2LimitF = -M_PI / 180 * 0.0;
+    c.shoulderJoint2LimitF = M_PI / 180 * 0.0;
     //-80 deg; backward (+) MIN 
     c.shoulderJoint2LimitB = -M_PI / 180 * 80.0;
 
@@ -1149,12 +1151,12 @@ void LilDog::destroy() {
     c.hipJoint1LimitD = M_PI / 180.0 * 60.0;
 
     //80 deg; forward (-) MAX 
-    c.hipJoint2LimitF = M_PI / 180.0 * 80.0;
+    c.hipJoint2LimitF = M_PI / 180.0 * 0.0;
     //0 deg; backward (+) MIN 
-    c.hipJoint2LimitB = M_PI / 180.0 * 0.0;
+    c.hipJoint2LimitB = M_PI / 180.0 * 80.0;
 
     //-30 deg; forward (-) MAX 
-    c.kneeJointLimitU = -M_PI/180 *0;
+    c.kneeJointLimitU = M_PI/180 *0;
     //-90 deg; backward (+) MIN 
     c.kneeJointLimitD = -M_PI/180 *90;
 
@@ -1180,8 +1182,8 @@ void LilDog::destroy() {
     c.elbowPower = c.shoulder1Power;
 
     c.hip1Power = shoulderPower_scale * (1.962 / (0.035 * 2.2)) * c.hipLength * c.trunkMass;
-    c.hip2Power = c.shoulder1Power;
-    c.kneePower = c.elbowPower;
+    c.hip2Power = c.hip1Power;
+    c.kneePower = c.hip1Power;
     // this is the spring constant. To keep  acceleration for the body
     // constant, we use the above unscaled preload of 0.08 and original
     // trunkMass to and then multiply by the new ones
@@ -1189,9 +1191,10 @@ void LilDog::destroy() {
 
     c.shoulder1Damping = 0.0;
     c.shoulder2Damping = 0.0;
-    c.elbowDamping = 0.01;
+    c.elbowDamping = 0.00;//0.01
     c.hip1Damping = 0.0;
     c.hip2Damping = 0.0;
+
     c.footDamping = 0.05; // a spring has no damping??
 
     c.MaxVel = 1.7 * 1.961 * M_PI;

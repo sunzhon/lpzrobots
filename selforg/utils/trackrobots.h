@@ -136,6 +136,7 @@ public:
  protected:
   bool open(const Trackable* robot);
   void track(const Trackable* robot, double time);
+
   void close();
 
  protected:

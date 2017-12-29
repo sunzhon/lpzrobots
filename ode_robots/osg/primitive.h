@@ -54,7 +54,7 @@ namespace lpzrobots {
    /* typedef */ struct GlobalData;
 
    class OdeHandle;
-   class OsgHandle;
+   class OsgHandle;//图形句柄
    class Color;
    /*****  end of forward declaration block  *****/
 

@@ -105,6 +105,9 @@ void TrackRobot::track(const Trackable* robot, double time)
   cnt++;
 }
 
+
+
+
 void TrackRobot::close()
 {
   if(file)

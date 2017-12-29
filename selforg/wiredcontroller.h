@@ -41,10 +41,10 @@
 #include <string>
 
 
-class AbstractController;
-class AbstractWiring;
+class AbstractController;//抽象连接，控制器和机器人之间的连接
+class AbstractWiring;//抽象控制器
 class Callbackable;
-class WiredController;
+class WiredController;//连接控制器
 
 /** The WiredController contains a controller and a wiring, which
     connects the controller with the robot.

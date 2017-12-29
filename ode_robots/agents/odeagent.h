@@ -90,6 +90,7 @@ namespace lpzrobots {
 
     virtual void step(double noise, double time);
 
+
     /**
      * Special function for the class Simulation to seperate the step
      * of the WiredController (plus TrackRobot) and the setting and getting
